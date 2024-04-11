@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 @RestController
 public class CommonCodeController {
 
@@ -34,4 +35,21 @@ public class CommonCodeController {
 
         return ResponseEntity.ok().body(itemDetails);
     }
+
+    @GetMapping("/r/commoncode/mixed/{pageNumber}/{pk_id}")
+    public ResponseEntity<HashMap<String, Object>> Mixed (@PathVariable("pageNumber") Integer pageNumber, @PathVariable("pk_id")String pkid) {
+        // call service
+        HashMap<String, Object> resultMap = new HashMap<>();
+        resultMap = commonCodeService.mixed(pageNumber, pkid);
+
+        // add request params
+        HashMap<String,Object> requestParams = new HashMap<>();
+        requestParams.put("pageNumber", pageNumber);
+        requestParams.put("pk_id", pkid);
+        resultMap.put("requestParams",requestParams);
+        
+        return ResponseEntity.ok().body(resultMap);
+    }
+    
 }
+

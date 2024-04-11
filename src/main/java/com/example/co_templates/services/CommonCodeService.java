@@ -2,6 +2,7 @@ package com.example.co_templates.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,5 +35,13 @@ public class CommonCodeService {
         itemDetails.put("NAME", name);
 
         return itemDetails;
+
     }
+    public HashMap<String,Object> mixed(Integer pageNumber, String pkId){
+        HashMap<String, Object> resultMap = new HashMap<>();
+        resultMap.put("list",this.list(pageNumber));
+        resultMap.put("view",this.view(pkId));
+        return resultMap;
+    }
+
 }
